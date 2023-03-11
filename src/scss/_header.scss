@@ -1,0 +1,16 @@
+header {
+    background-color: rgba(51, 48, 48, 0.817);
+    padding: 2rem 0;
+    text-align: center;
+    & > a {
+      color: white;
+      text-decoration: none;
+      padding: 0 1rem;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .active {
+    text-decoration: underline;
+  }
