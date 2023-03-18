@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import SearchBox from '../components/SearchBox';
 
 export default class Home extends PureComponent {

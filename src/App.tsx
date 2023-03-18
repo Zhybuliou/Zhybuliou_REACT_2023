@@ -5,6 +5,7 @@ import Header from './components/Header';
 import About from './pages/About';
 import Home from './pages/Home';
 import NotFoundPage from './pages/NotFoundPage';
+
 export default class App extends PureComponent {
   render() {
     return (
