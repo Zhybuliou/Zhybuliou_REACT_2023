@@ -19,7 +19,7 @@ export default class Card extends PureComponent<CardType> {
       <div className="card" data-testid="card">
         <div className="wrapper-card">
           <div className={`color_bg ${alt}`} />
-          <div className="card_img" style={{ backgroundImage: `url(./src/assets${image})` }} />
+          <div className="card_img" style={{ backgroundImage: `url(${image})` }} />
           <BiHeart className="heart" />
           <div className="card-info">
             <h2>{title}</h2>
