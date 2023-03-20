@@ -4,7 +4,7 @@ export default class FormSelect extends PureComponent {
   render() {
     return (
       <div>
-        <label htmlFor="select">
+        <label className="select-input" htmlFor="select">
           Department:
           <select name="select" id="select">
             <option value="Marketing">Marketing</option>
