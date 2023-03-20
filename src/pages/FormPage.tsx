@@ -17,8 +17,9 @@ export default class FormPage extends Component<MyProps> {
     return (
       <>
         <h2>Form</h2>
-        <form id="form" className="form" name="control-ref" ref={this.formRadio} />
-        <input className="form-button" type="submit" value="Send" />
+        <form id="form" className="form" name="control-ref" ref={this.formRadio}>
+          <input className="form-button" type="submit" value="Send" />
+        </form>
       </>
     );
   }
