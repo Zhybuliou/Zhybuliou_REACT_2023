@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "lint": "eslint . --ext .ts --ext .tsx",
+    "lint:fix": "eslint ./src --ext .ts --ext .tsx --fix",
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest --coverage"
