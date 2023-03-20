@@ -40,4 +40,11 @@ describe('Componets test', () => {
     render(<NotFoundPage />);
     expect(screen.getAllByText(/404 Page/i)).toBeDefined();
   });
+
+  test('Check render page Form', () => {
+    setup();
+    const linkForm = screen.getByTestId('link-form');
+    fireEvent.click(linkForm);
+    expect(screen.getAllByText(/Form/i)).toBeDefined();
+  });
 });

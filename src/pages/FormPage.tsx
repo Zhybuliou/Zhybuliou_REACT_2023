@@ -4,7 +4,7 @@ type MyProps = {
   children?: React.ReactNode;
 };
 
-export default class Form extends Component<MyProps> {
+export default class FormPage extends Component<MyProps> {
   private formRadio: React.RefObject<HTMLFormElement>;
 
   constructor(props: MyProps) {
