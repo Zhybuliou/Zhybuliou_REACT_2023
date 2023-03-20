@@ -12,6 +12,9 @@ export default class Header extends PureComponent {
           <NavLink data-testid="link-about" to="/about">
             About Us
           </NavLink>
+          <NavLink data-testid="link-form" to="/form">
+            Form
+          </NavLink>
         </nav>
       </header>
     );
