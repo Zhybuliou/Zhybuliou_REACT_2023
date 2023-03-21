@@ -25,7 +25,7 @@ const dataInput = {
   required: false,
 };
 
-describe('Componets test', () => {
+describe('Components test', () => {
   test('Check render Home Page', () => {
     setup();
     expect(screen.getByText(/Kakashi Hatake/i)).toBeDefined();
@@ -42,7 +42,7 @@ describe('Componets test', () => {
     expect(input.value).toBe('text');
   });
 
-  test('Check render Apout Page', () => {
+  test('Check render About Page', () => {
     setup();
     const linkAbout = screen.getByTestId('link-about');
     fireEvent.click(linkAbout);
