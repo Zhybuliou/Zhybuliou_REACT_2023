@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import FormCards from '../components/FormCards';
-import InputsForm from '../components/Inputs';
+import FormInput from '../components/FormInput';
+import FormSelect from '../components/FormSelect';
+import INPUTS from '../data/inputs';
 
 interface IState {
   formValue: {
@@ -71,7 +73,6 @@ export default class FormPage extends Component<MyProps, IState> {
       this.setState({ checkErrorForm: false });
       this.setState({ submitButton: true });
       this.setState({ sendForm: true });
-      console.log(formValue);
     }
   }
 
@@ -88,7 +89,15 @@ export default class FormPage extends Component<MyProps, IState> {
           onSubmit={this.handleSubmit}
           onChange={this.handleChange}
         >
-          <InputsForm />
+          <div>
+            {INPUTS.map((input) =>
+              input.id === 3 ? (
+                <FormSelect key={input.id} />
+              ) : (
+                <FormInput {...input} key={input.id} />
+              )
+            )}
+          </div>
           <input className="form-button" type="submit" value="Send" disabled={submitButton} />
           {sendForm && <p className="form-send">Your form has been submitted successfully!</p>}
         </form>
