@@ -19,12 +19,12 @@ export default class SearchBox extends Component<MyProps, MyState> {
   }
 
   componentWillUnmount(): void {
-    localStorage.setItem('search', localStorage.getItem('search') || '');
+    const { myValue } = this.state;
+    localStorage.setItem('search', myValue);
   }
 
   saveInput(data: string): void {
     this.setState({ myValue: data });
-    localStorage.setItem('search', `${data}`);
   }
 
   render() {
