@@ -42,7 +42,7 @@ export default class FormPage extends Component<MyProps, IState> {
     const radio = currentState.radio as string;
     const image = currentState.image as Blob;
     const { formValue } = this.state;
-    if ([name, data, image.name].includes('') || !name.match(`^[A-Za-z0-9]{3,16}$`)) {
+    if ([name, data, image.name].includes('') || !name.match(`^[A-Z][a-z]*(?: [A-Z][a-z]*)*$`)) {
       this.setState({ checkErrorInput: false, submitButton: true, checkErrorForm: true });
     } else {
       this.formRadio.current?.reset();

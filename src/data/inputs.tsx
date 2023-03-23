@@ -5,10 +5,10 @@ const INPUTS = [
     type: 'text',
     placeholder: 'Your name...',
     errorMessage:
-      "Username should be 3-16 characters US and shouldn't include any special character!",
+      "Name or surname should starts with uppercase letter on English language and shouldn't include any special character!",
     message: '',
     label: 'Username*',
-    pattern: '^[A-Za-z0-9]{3,16}$',
+    pattern: '^[A-Z][a-z]*(?: [A-Z][a-z]*)*$',
     required: false,
   },
   {
