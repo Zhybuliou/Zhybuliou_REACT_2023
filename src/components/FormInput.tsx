@@ -11,9 +11,9 @@ interface IValueInput {
   pattern?: string;
   required?: boolean;
   value?: string;
+  checkErrorInput: boolean;
 }
 interface IStateInput {
-  focused: boolean;
   selectedInput: boolean;
 }
 
@@ -23,22 +23,24 @@ export default class FormInput extends Component<IValueInput, IStateInput> {
   constructor(props: IValueInput) {
     super(props);
     this.state = {
-      focused: false,
       selectedInput: false,
     };
-    this.handleChange = this.handleChange.bind(this);
     this.inputValue = React.createRef();
   }
 
-  handleChange = () => {
-    const { focused } = this.state;
-    this.setState({ focused: !focused });
-  };
-
   render() {
-    const { name, label, type, required, placeholder, value, message, pattern, errorMessage } =
-      this.props;
-    const { focused, selectedInput } = this.state;
+    const {
+      name,
+      label,
+      type,
+      required,
+      placeholder,
+      message,
+      pattern,
+      errorMessage,
+      checkErrorInput,
+    } = this.props;
+    const { selectedInput } = this.state;
     return (
       <>
         <label htmlFor={name}>{label}</label>
@@ -50,15 +52,14 @@ export default class FormInput extends Component<IValueInput, IStateInput> {
           required={required}
           placeholder={placeholder}
           name={name}
-          value={value}
-          onChange={this.handleChange}
-          data-focused={focused}
-          checked={name === 'radio' ? true : selectedInput}
+          defaultChecked={name === 'radio' ? true : selectedInput}
         />
         <span className="input-message">{message}</span>
         {['name', 'image', 'data'].includes(`${name}`) &&
           !this.inputValue.current?.value.match(`${pattern}`)?.input && (
-            <p className="error-message hide-message">{errorMessage}</p>
+            <p className={checkErrorInput ? 'error-message hide-message' : 'error-message'}>
+              {errorMessage}
+            </p>
           )}
       </>
     );

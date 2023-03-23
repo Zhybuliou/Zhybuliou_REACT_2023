@@ -16,6 +16,7 @@ interface IState {
   submitButton: boolean;
   checkErrorForm: boolean;
   sendForm: boolean;
+  checkErrorInput: boolean;
 }
 type MyProps = {
   children?: React.ReactNode;
@@ -31,6 +32,7 @@ export default class FormPage extends Component<MyProps, IState> {
       submitButton: true,
       checkErrorForm: false,
       sendForm: false,
+      checkErrorInput: true,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -42,42 +44,38 @@ export default class FormPage extends Component<MyProps, IState> {
     if (checkErrorForm) {
       this.setState({ submitButton: false });
     }
-    const allMassage = Array.from(document.querySelectorAll('.error-message')).length - 1;
-    if (allMassage) {
-      this.setState({ submitButton: false });
-    }
+    this.setState({ submitButton: false });
     this.setState({ sendForm: false });
   }
 
   handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    const myForm = this.formRadio.current as HTMLFormElement;
+    const formObject = new FormData(myForm);
+    const currentState = Object.fromEntries(formObject.entries());
+    const name = currentState.name as string;
+    const data = currentState.data as string;
+    const select = currentState.select as string;
+    const check = currentState.check as string;
+    const radio = currentState.radio as string;
+    const image = currentState.image as Blob;
     const { formValue } = this.state;
-    const allMassage = document.querySelectorAll('.error-message');
-    if (Array.from(allMassage).length) {
-      Array.from(allMassage).forEach((error) => error.classList.remove('hide-message'));
+    if (!name || !data || !image.name) {
+      this.setState({ checkErrorInput: false });
       this.setState({ submitButton: true });
       this.setState({ checkErrorForm: true });
     } else {
-      const myForm = this.formRadio.current as HTMLFormElement;
-      const formObject = new FormData(myForm);
-      const currentState = Object.fromEntries(formObject.entries());
-      const name = currentState.name as string;
-      const data = currentState.data as string;
-      const select = currentState.select as string;
-      const check = currentState.check as string;
-      const radio = currentState.radio as string;
-      const image = currentState.image as Blob;
-      formValue.push({ name, data, select, check, radio, image });
-      this.setState({ formValue });
+      this.setState({ formValue: [...formValue, { name, data, select, check, radio, image }] });
       this.formRadio.current?.reset();
       this.setState({ checkErrorForm: false });
       this.setState({ submitButton: true });
       this.setState({ sendForm: true });
+      this.setState({ checkErrorInput: true });
     }
   }
 
   render() {
-    const { submitButton, sendForm } = this.state;
+    const { submitButton, sendForm, checkErrorInput } = this.state;
     return (
       <>
         <h2>Form</h2>
@@ -94,7 +92,7 @@ export default class FormPage extends Component<MyProps, IState> {
               input.id === 3 ? (
                 <FormSelect key={input.id} />
               ) : (
-                <FormInput {...input} key={input.id} />
+                <FormInput {...input} key={input.id} checkErrorInput={checkErrorInput} />
               )
             )}
           </div>
