@@ -44,8 +44,7 @@ export default class FormPage extends Component<MyProps, IState> {
     if (checkErrorForm) {
       this.setState({ submitButton: false });
     }
-    this.setState({ submitButton: false });
-    this.setState({ sendForm: false });
+    this.setState({ submitButton: false, sendForm: false });
   }
 
   handleSubmit(e: React.FormEvent) {
@@ -60,17 +59,17 @@ export default class FormPage extends Component<MyProps, IState> {
     const radio = currentState.radio as string;
     const image = currentState.image as Blob;
     const { formValue } = this.state;
-    if (!name || !data || !image.name) {
-      this.setState({ checkErrorInput: false });
-      this.setState({ submitButton: true });
-      this.setState({ checkErrorForm: true });
+    if ([name, data, image.name].includes('')) {
+      this.setState({ checkErrorInput: false, submitButton: true, checkErrorForm: true });
     } else {
-      this.setState({ formValue: [...formValue, { name, data, select, check, radio, image }] });
       this.formRadio.current?.reset();
-      this.setState({ checkErrorForm: false });
-      this.setState({ submitButton: true });
-      this.setState({ sendForm: true });
-      this.setState({ checkErrorInput: true });
+      this.setState({
+        formValue: [...formValue, { name, data, select, check, radio, image }],
+        checkErrorForm: false,
+        submitButton: true,
+        sendForm: true,
+        checkErrorInput: true,
+      });
     }
   }
 

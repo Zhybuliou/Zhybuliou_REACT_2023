@@ -13,18 +13,12 @@ interface IValueInput {
   value?: string;
   checkErrorInput: boolean;
 }
-interface IStateInput {
-  selectedInput: boolean;
-}
 
-export default class FormInput extends Component<IValueInput, IStateInput> {
+export default class FormInput extends Component<IValueInput> {
   private inputValue: React.RefObject<HTMLInputElement>;
 
   constructor(props: IValueInput) {
     super(props);
-    this.state = {
-      selectedInput: false,
-    };
     this.inputValue = React.createRef();
   }
 
@@ -39,8 +33,8 @@ export default class FormInput extends Component<IValueInput, IStateInput> {
       pattern,
       errorMessage,
       checkErrorInput,
+      value,
     } = this.props;
-    const { selectedInput } = this.state;
     return (
       <>
         <label htmlFor={name}>{label}</label>
@@ -52,7 +46,8 @@ export default class FormInput extends Component<IValueInput, IStateInput> {
           required={required}
           placeholder={placeholder}
           name={name}
-          defaultChecked={name === 'radio' ? true : selectedInput}
+          defaultChecked={name === 'radio'}
+          defaultValue={value}
         />
         <span className="input-message">{message}</span>
         {['name', 'image', 'data'].includes(`${name}`) &&
