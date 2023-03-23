@@ -62,12 +62,12 @@ describe('Components test', () => {
   });
 
   test('Check render input Form', () => {
-    render(<FormInput {...dataInput} />);
+    render(<FormInput checkErrorInput={false} {...dataInput} />);
     expect(screen.getByPlaceholderText('Your name...')).toBeInTheDocument();
   });
 
   test('It should keep a value in front of the input', () => {
-    render(<FormInput {...dataInput} />);
+    render(<FormInput checkErrorInput={false} {...dataInput} />);
     const input = screen.getByPlaceholderText('Your name...') as HTMLInputElement;
     fireEvent.change(input, { target: { value: 'text' } });
     expect(input.value).toBe('text');
