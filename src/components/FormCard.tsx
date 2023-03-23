@@ -1,13 +1,5 @@
 import { PureComponent } from 'react';
-
-interface IFormCard {
-  name: string;
-  data: string;
-  select: string;
-  check: string;
-  radio: string;
-  image?: Blob;
-}
+import { IFormCard } from '../types/types';
 
 export default class FormCard extends PureComponent<IFormCard> {
   render() {

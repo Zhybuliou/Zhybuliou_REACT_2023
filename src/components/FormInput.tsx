@@ -1,18 +1,5 @@
 import React, { Component } from 'react';
-
-interface IValueInput {
-  id?: number;
-  name?: string;
-  type?: string;
-  placeholder?: string;
-  errorMessage?: string;
-  message?: string;
-  label?: string;
-  pattern?: string;
-  required?: boolean;
-  value?: string;
-  checkErrorInput: boolean;
-}
+import { IValueInput } from '../types/types';
 
 export default class FormInput extends Component<IValueInput> {
   private inputValue: React.RefObject<HTMLInputElement>;

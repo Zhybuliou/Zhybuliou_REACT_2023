@@ -3,24 +3,7 @@ import FormCards from '../components/FormCards';
 import FormInput from '../components/FormInput';
 import FormSelect from '../components/FormSelect';
 import INPUTS from '../data/inputs';
-
-interface IState {
-  formValue: {
-    name: string;
-    data: string;
-    select: string;
-    check: string;
-    radio: string;
-    image?: Blob;
-  }[];
-  submitButton: boolean;
-  checkErrorForm: boolean;
-  sendForm: boolean;
-  checkErrorInput: boolean;
-}
-type MyProps = {
-  children?: React.ReactNode;
-};
+import { IState, MyProps } from '../types/types';
 
 export default class FormPage extends Component<MyProps, IState> {
   private formRadio: React.RefObject<HTMLFormElement>;
@@ -59,7 +42,7 @@ export default class FormPage extends Component<MyProps, IState> {
     const radio = currentState.radio as string;
     const image = currentState.image as Blob;
     const { formValue } = this.state;
-    if ([name, data, image.name].includes('')) {
+    if ([name, data, image.name].includes('') || !name.match(`^[A-Za-z0-9]{3,16}$`)) {
       this.setState({ checkErrorInput: false, submitButton: true, checkErrorForm: true });
     } else {
       this.formRadio.current?.reset();
