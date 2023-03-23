@@ -14,8 +14,8 @@ export default class App extends PureComponent {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="form" element={<FormPage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/form" element={<FormPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </>
