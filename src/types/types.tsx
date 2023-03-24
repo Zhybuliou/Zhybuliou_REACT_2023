@@ -14,7 +14,7 @@ export interface IFormCard {
   select: string;
   check: string;
   radio: string;
-  image?: Blob;
+  imageUrl?: string;
 }
 export interface IValueInput {
   id?: number;

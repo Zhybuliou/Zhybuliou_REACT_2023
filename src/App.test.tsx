@@ -4,6 +4,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
 import NotFoundPage from './pages/NotFoundPage';
 import FormInput from './components/FormInput';
+import FormCard from './components/FormCard';
 
 const setup = () => {
   render(
@@ -71,5 +72,21 @@ describe('Components test', () => {
     const input = screen.getByPlaceholderText('Your name...') as HTMLInputElement;
     fireEvent.change(input, { target: { value: 'text' } });
     expect(input.value).toBe('text');
+  });
+  test('check render FormCard', () => {
+    const card = {
+      name: 'Bob',
+      data: '23/12/2000',
+      select: 'seal',
+      check: '',
+      radio: 'Mail',
+      image: 'https://en.wikipedia.org/wiki/File:Image_created_with_a_mobile_phone.png',
+    };
+    render(<FormCard {...card} />);
+    expect(screen.getByText(/Bob/i)).toBeInTheDocument();
+    expect(screen.getByText(/seal/i)).toBeInTheDocument();
+    expect(screen.getByText(/no/i)).toBeInTheDocument();
+    expect(screen.getByText(/Mail/i)).toBeInTheDocument();
+    expect(screen.getByAltText(/Bob/i)).toBeInTheDocument();
   });
 });

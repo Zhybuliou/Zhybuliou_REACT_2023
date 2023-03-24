@@ -41,13 +41,14 @@ export default class FormPage extends Component<MyProps, IState> {
     const check = currentState.check as string;
     const radio = currentState.radio as string;
     const image = currentState.image as Blob;
+    const imageUrl = URL.createObjectURL(image);
     const { formValue } = this.state;
     if ([name, data, image.name].includes('') || !name.match(`^[A-Z][a-z]*(?: [A-Z][a-z]*)*$`)) {
       this.setState({ checkErrorInput: false, submitButton: true, checkErrorForm: true });
     } else {
       this.formRadio.current?.reset();
       this.setState({
-        formValue: [...formValue, { name, data, select, check, radio, image }],
+        formValue: [...formValue, { name, data, select, check, radio, imageUrl }],
         checkErrorForm: false,
         submitButton: true,
         sendForm: true,

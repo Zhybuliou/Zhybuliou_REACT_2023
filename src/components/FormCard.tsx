@@ -3,13 +3,11 @@ import { IFormCard } from '../types/types';
 
 export default class FormCard extends PureComponent<IFormCard> {
   render() {
-    const { image, name, data, select, radio, check } = this.props;
+    const { imageUrl, name, data, select, radio, check } = this.props;
     return (
       <div className="form-card">
         <div className="form-card-header">
-          {image && (
-            <img className="form-card-avatar" alt={name} src={URL.createObjectURL(image)} />
-          )}
+          <img className="form-card-avatar" alt={name} src={imageUrl} />
           <div className="form-card-content">
             <h3>{name}</h3>
             <ul>
