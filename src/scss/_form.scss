@@ -1,0 +1,146 @@
+form {
+    display: flex;
+    max-width: 400px;
+    min-height: 280px;
+    padding: 20px;
+    margin: 0 auto;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: space-between;
+  
+    background-color: white;
+    border-radius: 0.25rem;
+    input[type='text'],
+    input[type='date'],
+    input[type='file'],
+    select {
+      width: 90%;
+      margin: 5px 0px;
+      padding: 5px;
+      border-radius: 0.25rem;
+      cursor: pointer;
+    }
+    input[type='checkbox'],
+    input[type='radio'] {
+      cursor: pointer;
+    }
+    label {
+      margin-bottom: 5px;
+    }
+  }
+  
+  .button {
+    margin: 20px 0;
+    padding: 10px 0;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(53deg, rgba(25, 191, 203, 1) 6%, rgba(188, 81, 218, 1) 73%);
+    color: white;
+    font-size: 1rem;
+  }
+  
+  .button:focus {
+    box-shadow: 0 0 0 1px hsl(178, 100%, 50%);
+  }
+  
+  .form-wrapper-cards {
+    max-width: 430px;
+    height: auto;
+    margin: 0 auto;
+  }
+  
+  .form-card {
+    height: auto;
+    margin: 10px 0px 10px 0px;
+    padding: 10px;
+    border-radius: 0.25rem;
+    background-color: rgb(136, 2, 138);
+  }
+  label {
+    display: flex;
+    span {
+      margin-right: 10px;
+      font-weight: 600;
+      width: 90px;
+    }
+  }
+  
+  .form-card-avatar {
+    width: 150px;
+    height: auto;
+    border-radius: 0.25rem;
+  }
+  .form-card-header {
+    display: flex;
+    h3 {
+      color: white;
+      text-align: center;
+      font-size: 24px;
+      text-transform: capitalize;
+      margin: 0 0 0 5px;
+    }
+    ul {
+      list-style-type: none;
+      color: aliceblue;
+    }
+    .form-card-content {
+      display: flex;
+      flex-direction: column;
+    }
+    li {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 5px;
+      flex-wrap: wrap;
+      span {
+        margin-right: 10px;
+        font-weight: 600;
+        color: rgb(212, 195, 195);
+      }
+    }
+  }
+  .error-message {
+    font-size: 12px;
+    padding: 3px;
+    color: red;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .hide-message {
+    font-size: 0px;
+    padding: 3px;
+    color: red;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  
+  input:invalid ~ input[type='submit'] {
+    display: block;
+    background-color: red;
+    margin: 0;
+    padding: 0;
+  }
+  .input-message {
+    display: inline;
+  }
+  .form-send {
+    margin: 5px 0 0 0;
+    padding: 0;
+    color: green;
+  }
+  .form-button {
+    cursor: pointer;
+    height: 30px;
+  }
+  :disabled {
+    cursor: default;
+  }
+  .select-input{
+    display: flex;
+    flex-direction: column;
+  }
