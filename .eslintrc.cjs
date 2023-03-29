@@ -24,5 +24,6 @@ module.exports = {
     'react/react-in-jsx-scope': 0,
     'react/jsx-props-no-spreading': 'off',
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'prettier/prettier': ['error', { endOfLine: 'auto' }],
   },
 };
