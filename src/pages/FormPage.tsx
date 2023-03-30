@@ -1,89 +1,116 @@
-import React, { Component } from 'react';
+import { ChangeEvent, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import FormCards from '../components/FormCards';
-import FormInput from '../components/FormInput';
-import FormSelect from '../components/FormSelect';
-import INPUTS from '../data/inputs';
-import { IState, MyProps } from '../types/types';
+import { IFormCard } from '../types/types';
 
-export default class FormPage extends Component<MyProps, IState> {
-  private formRadio: React.RefObject<HTMLFormElement>;
+export default function FormPage() {
+  const [formValue, setFormValue] = useState<IFormCard[]>([]);
+  const [submitButton, setSubmitButton] = useState(true);
+  const [checkErrorForm, setCheckErrorForm] = useState(false);
+  const [sendForm, setSendFrom] = useState(false);
+  const [cardImage, setCardImage] = useState<string>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<IFormCard>({
+    defaultValues: {
+      radio: 'Male',
+    },
+    mode: 'onChange',
+    shouldFocusError: true,
+  });
 
-  constructor(props: MyProps) {
-    super(props);
-    this.state = {
-      formValue: [],
-      submitButton: true,
-      checkErrorForm: false,
-      sendForm: false,
-      checkErrorInput: true,
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.formRadio = React.createRef();
-  }
-
-  handleChange() {
-    const { checkErrorForm } = this.state;
+  function handleChange() {
     if (checkErrorForm) {
-      this.setState({ submitButton: false });
+      setSubmitButton(false);
     }
-    this.setState({ submitButton: false, sendForm: false });
+    setSendFrom(false);
+    setSubmitButton(false);
   }
 
-  handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const myForm = this.formRadio.current as HTMLFormElement;
-    const formObject = new FormData(myForm);
-    const currentState = Object.fromEntries(formObject.entries());
-    const name = currentState.name as string;
-    const data = currentState.data as string;
-    const select = currentState.select as string;
-    const check = currentState.check as string;
-    const radio = currentState.radio as string;
-    const image = currentState.image as Blob;
-    const imageUrl = URL.createObjectURL(image);
-    const { formValue } = this.state;
-    if ([name, data, image.name].includes('') || !name.match(`^[A-Z][a-z]*(?: [A-Z][a-z]*)*$`)) {
-      this.setState({ checkErrorInput: false, submitButton: true, checkErrorForm: true });
-    } else {
-      this.formRadio.current?.reset();
-      this.setState({
-        formValue: [...formValue, { name, data, select, check, radio, imageUrl }],
-        checkErrorForm: false,
-        submitButton: true,
-        sendForm: true,
-        checkErrorInput: true,
-      });
-    }
-  }
+  const onSubmit = (data: IFormCard) => {
+    const currentState = [{ ...data, imageUrl: cardImage }, ...formValue];
+    setFormValue(currentState);
+    setCheckErrorForm(false);
+    setSubmitButton(true);
+    setSendFrom(true);
+    reset();
+  };
+  const onError = () => {
+    setSubmitButton(true);
+  };
+  const handleSetImage = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files as FileList;
+    const img = file[0] as Blob;
+    const image = URL.createObjectURL(img);
+    setCardImage(image);
+  };
 
-  render() {
-    const { submitButton, sendForm, checkErrorInput } = this.state;
-    return (
-      <>
-        <h2>Form</h2>
-        <form
-          id="form"
-          className="form"
-          name="control-ref"
-          ref={this.formRadio}
-          onSubmit={this.handleSubmit}
-          onChange={this.handleChange}
-        >
-          <div>
-            {INPUTS.map((input) =>
-              input.id === 3 ? (
-                <FormSelect key={input.id} />
-              ) : (
-                <FormInput {...input} key={input.id} checkErrorInput={checkErrorInput} />
-              )
-            )}
-          </div>
-          <input className="form-button" type="submit" value="Send" disabled={submitButton} />
-          {sendForm && <p className="form-send">Your form has been submitted successfully!</p>}
-        </form>
-        <FormCards {...this.state} />
-      </>
-    );
-  }
+  return (
+    <>
+      <h2>Form</h2>
+      <form
+        id="form"
+        className="form"
+        name="control-ref"
+        onSubmit={handleSubmit(onSubmit, onError)}
+        onChange={handleChange}
+      >
+        <label htmlFor="name">Name*</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Name..."
+          {...register('name', {
+            required: 'Name is required field!!!',
+          })}
+        />
+        {errors.name && <div style={{ color: 'red' }}>{errors.name.message}</div>}
+        <label htmlFor="data">Birthday*</label>
+        <input
+          id="data"
+          type="date"
+          {...register('data', {
+            required: 'Date is required field!!!',
+          })}
+        />
+        {errors.data && <div style={{ color: 'red' }}>{errors.data.message}</div>}
+        <label htmlFor="department">Department</label>
+        <select {...register('select')} id="department">
+          <option value="Logistic">Logistic</option>
+          <option value="Developer">Developer</option>
+          <option value="Marketing">Marketing</option>
+        </select>
+        <label htmlFor="gender">Gender</label>
+        <div className="input-field" id="gender">
+          <input {...register('radio')} type="radio" value="Male" />
+          <span>Male</span>
+        </div>
+        <div className="input-field">
+          <input {...register('radio')} type="radio" value="Female" />
+          <span>Female</span>
+        </div>
+        <label htmlFor="relocate">Relocate</label>
+        <div className="input-field" id="relocate">
+          <input {...register('check')} type="checkbox" value="Yes" />
+          <span>Yes</span>
+        </div>
+        <label htmlFor="avatar">Avatar</label>
+        <input
+          {...register('imageUrl', {
+            required: 'Please select your image!',
+          })}
+          type="file"
+          id="avatar"
+          onChange={(e) => handleSetImage(e)}
+        />
+        {errors.imageUrl && <div style={{ color: 'red' }}>{errors.imageUrl.message}</div>}
+        <input className="form-button" type="submit" value="Send" disabled={submitButton} />
+        {sendForm && <p className="form-send">Your form has been submitted successfully!</p>}
+      </form>
+      <FormCards formValue={formValue} />
+    </>
+  );
 }

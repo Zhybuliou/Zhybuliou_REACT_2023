@@ -1,9 +1,9 @@
 export interface IState {
   formValue: IFormCard[];
-  submitButton: boolean;
-  checkErrorForm: boolean;
-  sendForm: boolean;
-  checkErrorInput: boolean;
+  submitButton?: boolean;
+  checkErrorForm?: boolean;
+  sendForm?: boolean;
+  checkErrorInput?: boolean;
 }
 export type MyProps = {
   children?: React.ReactNode;
@@ -29,3 +29,11 @@ export interface IValueInput {
   value?: string;
   checkErrorInput: boolean;
 }
+// export type FormType = {
+//   name: string;
+//   data: string;
+//   select: string;
+//   check: string;
+//   radio: string;
+//   imageUrl?: string;
+// };
