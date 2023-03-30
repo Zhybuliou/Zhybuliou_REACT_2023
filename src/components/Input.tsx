@@ -1,5 +1,3 @@
-import { PureComponent } from 'react';
-
 type MyPropsInput = {
   placeholder: string;
   handleChange: (value: string) => void;
@@ -8,17 +6,20 @@ type MyPropsInput = {
   valueInput: string;
 };
 
-export default class Input extends PureComponent<MyPropsInput> {
-  render() {
-    const { valueInput, typeInput, classInput, placeholder, handleChange } = this.props;
-    return (
-      <input
-        value={valueInput}
-        type={typeInput}
-        className={classInput}
-        placeholder={placeholder}
-        onChange={(e) => handleChange(e.target.value)}
-      />
-    );
-  }
+export default function Input({
+  valueInput,
+  typeInput,
+  classInput,
+  placeholder,
+  handleChange,
+}: MyPropsInput) {
+  return (
+    <input
+      value={valueInput}
+      type={typeInput}
+      className={classInput}
+      placeholder={placeholder}
+      onChange={(e) => handleChange(e.target.value)}
+    />
+  );
 }
