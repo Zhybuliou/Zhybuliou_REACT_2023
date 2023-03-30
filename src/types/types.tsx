@@ -29,11 +29,12 @@ export interface IValueInput {
   value?: string;
   checkErrorInput: boolean;
 }
-// export type FormType = {
-//   name: string;
-//   data: string;
-//   select: string;
-//   check: string;
-//   radio: string;
-//   imageUrl?: string;
-// };
+export type CardType = {
+  title: string;
+  image: string;
+  oldPrice: string;
+  newPrice: string;
+  dollars: string;
+  alt: string;
+  expdate: string;
+};

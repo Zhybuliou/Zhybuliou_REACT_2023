@@ -104,7 +104,10 @@ export default function FormPage() {
           })}
           type="file"
           id="avatar"
-          onChange={(e) => handleSetImage(e)}
+          onChange={(e) => {
+            handleSetImage(e);
+            errors.imageUrl = undefined;
+          }}
         />
         {errors.imageUrl && <div style={{ color: 'red' }}>{errors.imageUrl.message}</div>}
         <input className="form-button" type="submit" value="Send" disabled={submitButton} />

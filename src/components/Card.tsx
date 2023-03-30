@@ -1,14 +1,5 @@
 import { BiHeart, BiCart } from 'react-icons/bi';
-
-type CardType = {
-  title: string;
-  image: string;
-  oldPrice: string;
-  newPrice: string;
-  dollars: string;
-  alt: string;
-  expdate: string;
-};
+import { CardType } from '../types/types';
 
 export default function Card({
   alt,
