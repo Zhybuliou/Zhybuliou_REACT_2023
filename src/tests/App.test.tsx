@@ -1,10 +1,10 @@
 import { HashRouter } from 'react-router-dom';
 import { describe, test } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import App from './App';
-import NotFoundPage from './pages/NotFoundPage';
-import FormInput from './components/FormInput';
-import FormCard from './components/FormCard';
+import App from '../App';
+import NotFoundPage from '../pages/NotFoundPage';
+import FormInput from '../components/FormInput';
+import FormCard from '../components/FormCard';
 
 const setup = () => {
   render(

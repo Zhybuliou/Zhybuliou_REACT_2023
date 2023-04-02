@@ -61,6 +61,7 @@ export default function FormPage() {
         <label htmlFor="name">Name*</label>
         <input
           type="text"
+          data-testid="name"
           id="name"
           placeholder="Name..."
           {...register('name', {
@@ -71,6 +72,7 @@ export default function FormPage() {
         <label htmlFor="data">Birthday*</label>
         <input
           id="data"
+          data-testid="data"
           type="date"
           {...register('data', {
             required: 'Date is required field!!!',
@@ -78,7 +80,7 @@ export default function FormPage() {
         />
         {errors.data && <div style={{ color: 'red' }}>{errors.data.message}</div>}
         <label htmlFor="department">Department</label>
-        <select {...register('select')} id="department">
+        <select {...register('select')} id="department" data-testid="select">
           <option value="Logistic">Logistic</option>
           <option value="Developer">Developer</option>
           <option value="Marketing">Marketing</option>
@@ -94,7 +96,7 @@ export default function FormPage() {
         </div>
         <label htmlFor="relocate">Relocate</label>
         <div className="input-field" id="relocate">
-          <input {...register('check')} type="checkbox" value="Yes" />
+          <input {...register('check')} data-testid="check" type="checkbox" value="Yes" />
           <span>Yes</span>
         </div>
         <label htmlFor="avatar">Avatar</label>
@@ -103,6 +105,7 @@ export default function FormPage() {
             required: 'Please select your image!',
           })}
           type="file"
+          data-testid="image"
           id="avatar"
           onChange={(e) => {
             handleSetImage(e);
@@ -110,7 +113,13 @@ export default function FormPage() {
           }}
         />
         {errors.imageUrl && <div style={{ color: 'red' }}>{errors.imageUrl.message}</div>}
-        <input className="form-button" type="submit" value="Send" disabled={submitButton} />
+        <input
+          className="form-button"
+          data-testid="form-button"
+          type="submit"
+          value="Send"
+          disabled={submitButton}
+        />
         {sendForm && <p className="form-send">Your form has been submitted successfully!</p>}
       </form>
       <FormCards formValue={formValue} />
