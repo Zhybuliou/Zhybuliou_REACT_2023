@@ -1,5 +1,5 @@
 import { describe, test } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import FormPage from '../pages/FormPage';
 import FormCard from '../components/FormCard';
 
@@ -55,5 +55,12 @@ describe('Components test function FormPage', () => {
     fireEvent.change(input, { target: { value: 'Hello' } });
     fireEvent.change(inputDate, { target: { value: '2020-05-12' } });
     expect(inputSubmit).not.toBeDisabled();
+  });
+  test('Check image by input type file', async () => {
+    const { input, inputSubmit, inputDate } = setup();
+    await fireEvent.change(input, { target: { value: 'Hello' } });
+    await fireEvent.change(inputDate, { target: { value: '2020-05-12' } });
+    await fireEvent.click(inputSubmit);
+    await waitFor(() => expect(screen.getByText(/Please select your image!/i)).toBeInTheDocument());
   });
 });
