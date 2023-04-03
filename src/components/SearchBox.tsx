@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import Button from './Button';
 import Input from './Input';
@@ -6,12 +6,17 @@ import Input from './Input';
 export default function SearchBox() {
   const localValue = localStorage.getItem('search') as string;
   const [myValue, setMyValue] = useState(localValue || '');
+  const valueRef = useRef<string>('');
+
+  useEffect(() => {
+    valueRef.current = myValue;
+  }, [myValue]);
 
   useEffect(() => {
     return () => {
-      localStorage.setItem('search', `${myValue}`);
+      localStorage.setItem('search', valueRef.current);
     };
-  }, [myValue]);
+  }, []);
 
   return (
     <div className="wrapper-search-module">
