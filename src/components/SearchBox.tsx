@@ -11,7 +11,7 @@ export default function SearchBox() {
     return () => {
       localStorage.setItem('search', `${myValue}`);
     };
-  });
+  }, [myValue]);
 
   return (
     <div className="wrapper-search-module">
