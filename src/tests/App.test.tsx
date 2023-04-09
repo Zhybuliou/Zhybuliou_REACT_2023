@@ -29,16 +29,16 @@ const dataInput = {
 describe('Components test', () => {
   test('Check render Home Page', () => {
     setup();
-    expect(screen.getByText(/Kakashi Hatake/i)).toBeDefined();
+    expect(screen.getByText(/Loading..../i)).toBeDefined();
   });
   test('Check render SearchBox', () => {
     setup();
-    expect(screen.getByPlaceholderText('search ...')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('search character ...')).toBeInTheDocument();
   });
 
   test('It should keep a value in front of the input', () => {
     setup();
-    const input = screen.getByPlaceholderText('search ...') as HTMLInputElement;
+    const input = screen.getByPlaceholderText('search character ...') as HTMLInputElement;
     fireEvent.change(input, { target: { value: 'text' } });
     expect(input.value).toBe('text');
   });
