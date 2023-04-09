@@ -1,9 +1,7 @@
-import React from 'react';
-
 export default function NothingHere() {
   return (
     <div>
-      <h2>There is nothing here</h2>
+      <h2>Nothing found. Please try again.</h2>
     </div>
   );
 }

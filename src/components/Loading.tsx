@@ -7,7 +7,7 @@ export default function Loading() {
       <div
         className="loader"
         style={{
-          backgroundImage: `url(${process.env.PUBLIC_URL}${GIF})`,
+          backgroundImage: `url(${GIF})`,
         }}
       />
     </div>

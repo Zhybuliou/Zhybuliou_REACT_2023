@@ -1,16 +1,22 @@
 import { Character } from '../types/types';
 
-export default function Popup({ ...props }) {
+export default function Popup({
+  popupContent,
+  changeContent,
+}: {
+  popupContent: Character[];
+  changeContent: (character: Character[]) => void;
+}) {
   return (
-    <div className="pop_up_container" onClick={() => props.changeContent([])}>
-      <div className="pop_up_body" onClick={(e) => e.stopPropagation()}>
+    <div className="pop_up_container">
+      <div className="pop_up_body">
         <div className="pop_up_header">
-          <button role="close-popup" onClick={() => props.changeContent([])}>
+          <button type="button" onClick={() => changeContent([])}>
             x
           </button>
         </div>
         <div className="pop_up_content">
-          {props.popupContent?.map((character: Character) => {
+          {popupContent?.map((character: Character) => {
             return (
               <div className="pop_up_card" key={character.id}>
                 <div

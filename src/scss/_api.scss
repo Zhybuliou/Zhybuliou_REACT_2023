@@ -1,0 +1,129 @@
+.search-api {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding-left: 64px;
+  
+    position: static;
+    max-width: 642px;
+    height: 50px;
+  
+    background: #f2f4f8;
+    border-radius: 12px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 16px;
+  
+    outline: none;
+    font-size: 20px;
+  
+    @media (max-width: 520px) {
+      width: 70%;
+    }
+  }
+  
+  .card_img_api {
+    border-radius: 20px 20px 0px 0px;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: calc(100% - 300px);
+    width: 100%;
+    height: 300px;
+    transition: ease all 0.3s;
+  }
+  
+  .pop_up_container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(56, 55, 55, 0.8);
+    padding-top: 15%;
+  }
+  
+  .pop_up_card {
+    display: flex;
+  }
+  .pop_up_card_img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 20px 0px 0px 20px;
+    width: 300px;
+    height: 300px;
+  }
+  .pop_up_card_info {
+    ul {
+      margin-top: 35px;
+      list-style-type: none;
+      li {
+        margin-bottom: 15px;
+        font-size: 20px;
+      }
+    }
+  }
+  .pop_up_body {
+    position: relative;
+    border-radius: 20px 20px 20px 20px;
+    display: flex;
+    width: 600px;
+    height: 300px;
+    background-color: #fff;
+    margin: 0 auto;
+  }
+  .pop_up_header {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    button {
+      width: 30px;
+      height: 30px;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 50%;
+      text-align: center;
+      transition: 0.3s;
+      &:hover {
+        background-color: #b82d44;
+        cursor: pointer;
+      }
+    }
+  }
+  .loader {
+    border-radius: 20px 20px 20px 20px;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  @media (max-width: 635px) {
+    .pop_up_body {
+      position: relative;
+      border-radius: 20px 20px 20px 20px;
+      display: flex;
+      width: 300px;
+      height: 500px;
+      background-color: #fff;
+      margin: 0 auto;
+    }
+    .pop_up_card_img {
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-radius: 20px 20px 0px 0px;
+      width: 300px;
+      height: 250px;
+    }
+    .pop_up_card_info ul {
+      margin-top: 0px;
+    }
+    .pop_up_card {
+      flex-wrap: wrap;
+    }
+  }
