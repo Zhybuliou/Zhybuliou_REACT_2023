@@ -54,7 +54,6 @@ export default function Home() {
     setPopupContent(character);
     setPopupToggle(!popupToggle);
   };
-
   return (
     <>
       <h2>Home Page</h2>
