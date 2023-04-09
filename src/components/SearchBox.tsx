@@ -1,7 +1,17 @@
 import { FaSearch } from 'react-icons/fa';
 import Button from './Button';
 
-export default function SearchBar({ search, handlerOnChange, handleKeyDown, handlerOnClick }: any) {
+export default function SearchBar({
+  search,
+  handlerOnChange,
+  handleKeyDown,
+  handlerOnClick,
+}: {
+  search: string;
+  handlerOnChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleKeyDown: (event: React.KeyboardEvent) => void;
+  handlerOnClick: () => void;
+}) {
   return (
     <div className="wrapper-search-module">
       <div className="wrapper-search">
@@ -9,19 +19,13 @@ export default function SearchBar({ search, handlerOnChange, handleKeyDown, hand
           <FaSearch />
         </div>
         <input
-          // role="search"
           className="search-api"
           placeholder="search character ..."
           value={search}
           onChange={handlerOnChange}
           onKeyUp={(e) => handleKeyDown(e)}
         />
-        <Button
-          // role="button"
-          classButton="search-btn"
-          text="search"
-          onClick={handlerOnClick}
-        />
+        <Button classButton="search-btn" text="search" onClick={handlerOnClick} />
       </div>
     </div>
   );

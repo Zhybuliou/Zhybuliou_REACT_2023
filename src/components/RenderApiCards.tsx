@@ -12,9 +12,10 @@ export default function RenderApiCards({
       {char &&
         char.map((character: Character) => {
           return (
-            <div className="card" data-testid="card" key={character.id}>
+            <div className="card" key={character.id}>
               <div
                 className="wrapper-card"
+                data-testid="card"
                 onClick={() => changeContent([character])}
                 aria-hidden="true"
               >

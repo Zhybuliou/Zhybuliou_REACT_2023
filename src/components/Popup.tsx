@@ -16,7 +16,7 @@ export default function Popup({
       }}
       aria-hidden
     >
-      <div className="pop_up_body">
+      <div className="pop_up_body" data-testid="popup">
         <div className="pop_up_header">
           <button type="button" onClick={() => changeContent([])}>
             x
