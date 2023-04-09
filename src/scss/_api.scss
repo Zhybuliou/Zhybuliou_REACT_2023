@@ -1,3 +1,6 @@
+body:has(.pop_up_container) {
+  overflow: hidden;
+}
 .search-api {
     display: flex;
     flex-direction: row;
@@ -101,6 +104,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    background-image: url('../../image/rick-and-morty.gif');
   }
   
   @media (max-width: 635px) {

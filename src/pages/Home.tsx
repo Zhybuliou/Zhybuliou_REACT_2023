@@ -53,11 +53,6 @@ export default function Home() {
   const changeContent = (character: Character[]) => {
     setPopupContent(character);
     setPopupToggle(!popupToggle);
-    if (popupToggle) {
-      document.body.style.overflow = 'visible';
-    } else {
-      document.body.style.overflow = 'hidden';
-    }
   };
 
   return (
