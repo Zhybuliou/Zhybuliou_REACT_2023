@@ -1,37 +1,31 @@
-import { useEffect, useRef, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import Button from './Button';
-import Input from './Input';
 
-export default function SearchBox() {
-  const localValue = localStorage.getItem('search') as string;
-  const [myValue, setMyValue] = useState(localValue || '');
-  const valueRef = useRef<string>('');
-
-  useEffect(() => {
-    valueRef.current = myValue;
-  }, [myValue]);
-
-  useEffect(() => {
-    return () => {
-      localStorage.setItem('search', valueRef.current);
-    };
-  }, []);
-
+export default function SearchBar({
+  search,
+  handlerOnChange,
+  handleKeyDown,
+  handlerOnClick,
+}: {
+  search: string;
+  handlerOnChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleKeyDown: (event: React.KeyboardEvent) => void;
+  handlerOnClick: () => void;
+}) {
   return (
     <div className="wrapper-search-module">
       <div className="wrapper-search">
         <div className="search-icon">
           <FaSearch />
         </div>
-        <Input
-          valueInput={myValue}
-          typeInput="search"
-          classInput="search-box"
-          placeholder="search ..."
-          handleChange={(data) => setMyValue(data)}
+        <input
+          className="search-api"
+          placeholder="search character ..."
+          value={search}
+          onChange={handlerOnChange}
+          onKeyUp={(e) => handleKeyDown(e)}
         />
-        <Button text="search" classButton="search-btn" />
+        <Button classButton="search-btn" text="search" onClick={handlerOnClick} />
       </div>
     </div>
   );
