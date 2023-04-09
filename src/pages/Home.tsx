@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import SearchBar from '../components/SearchBox';
 import apiResult from '../service/api';
 import URL from '../data/url';
@@ -9,21 +9,30 @@ import RenderApiCards from '../components/RenderApiCards';
 import NothingHere from '../components/NothingHere';
 
 export default function Home() {
-  const [search, setSearch] = useState('');
+  const localValue = localStorage.getItem('search') as string;
+  const [search, setSearch] = useState(localValue || '');
   const [characters, setCharacters] = useState<Character[]>([]);
   const [popupContent, setPopupContent] = useState<Character[]>([]);
   const [popupToggle, setPopupToggle] = useState(false);
   const [isPending, setIsPending] = useState(true);
+  const valueRef = useRef<string>('');
 
   const handlerOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
   };
 
   useEffect(() => {
-    apiResult(URL, '').then((data) => {
+    valueRef.current = search;
+  }, [search]);
+
+  useEffect(() => {
+    apiResult(URL, localStorage.getItem('search') || '').then((data) => {
       setCharacters(data.results);
       setIsPending(false);
     });
+    return () => {
+      localStorage.setItem('search', valueRef.current);
+    };
   }, []);
   const handlerOnClick = async () => {
     setIsPending(true);
