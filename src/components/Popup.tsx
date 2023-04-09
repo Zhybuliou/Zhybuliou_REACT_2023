@@ -8,7 +8,14 @@ export default function Popup({
   changeContent: (character: Character[]) => void;
 }) {
   return (
-    <div className="pop_up_container">
+    <div
+      className="pop_up_container"
+      onClick={(event) => {
+        const hasClass = event.target as Element;
+        if (hasClass.classList.contains('pop_up_container')) changeContent([]);
+      }}
+      aria-hidden
+    >
       <div className="pop_up_body">
         <div className="pop_up_header">
           <button type="button" onClick={() => changeContent([])}>
