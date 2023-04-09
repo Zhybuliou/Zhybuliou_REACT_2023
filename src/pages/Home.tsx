@@ -74,7 +74,7 @@ export default function Home() {
       />
       {isPending && <Loading />}
       {isPending || <RenderApiCards char={characters} changeContent={changeContent} />}
-      {characters.length > 0 || <NothingHere />}
+      {characters?.length > 0 || <NothingHere />}
 
       {popupToggle && <Popup popupContent={popupContent} changeContent={changeContent} />}
     </>
