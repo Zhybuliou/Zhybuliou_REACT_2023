@@ -1,9 +1,12 @@
 import { ChangeEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { addForm } from '../store/reduxReducer';
 import FormCards from '../components/FormCards';
 import { IFormCard } from '../types/types';
 
 export default function FormPage() {
+  const dispatch = useDispatch();
   const [formValue, setFormValue] = useState<IFormCard[]>([]);
   const [submitButton, setSubmitButton] = useState(true);
   const [checkErrorForm, setCheckErrorForm] = useState(false);
@@ -33,6 +36,7 @@ export default function FormPage() {
   const onSubmit = (data: IFormCard) => {
     const currentState = [{ ...data, imageUrl: cardImage }, ...formValue];
     setFormValue(currentState);
+    dispatch(addForm({ ...data, imageUrl: cardImage }));
     setCheckErrorForm(false);
     setSubmitButton(true);
     setSendFrom(true);
@@ -122,7 +126,7 @@ export default function FormPage() {
         />
         {sendForm && <p className="form-send">Your form has been submitted successfully!</p>}
       </form>
-      <FormCards formValue={formValue} />
+      <FormCards />
     </>
   );
 }
