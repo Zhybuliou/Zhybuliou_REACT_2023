@@ -17,11 +17,11 @@ const formSlice = createSlice({
         check: action.payload.check,
       });
     },
-    removeForm(state, action) {
-      console.log('delete', state);
-    },
+    // removeForm(state, action) {
+    //   console.log('delete', state);
+    // },
   },
 });
 
-export const { addForm, removeForm } = formSlice.actions;
+export const { addForm } = formSlice.actions;
 export default formSlice.reducer;
