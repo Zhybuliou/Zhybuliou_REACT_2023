@@ -8,7 +8,7 @@ export default function Button({
   onClick: () => void;
 }) {
   return (
-    <button className={classButton} type="button" onClick={onClick}>
+    <button className={classButton} type="button" data-testid="button" onClick={onClick}>
       {text}
     </button>
   );

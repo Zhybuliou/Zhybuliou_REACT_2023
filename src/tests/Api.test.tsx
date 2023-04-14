@@ -15,7 +15,7 @@ const setup = () => {
   );
 };
 
-describe('Test API Home Page', () => {
+describe('Test API Home Page', async () => {
   it('Check render all 20 cards', async () => {
     await setup();
     const card = (await screen.queryAllByTestId(/card/i)) as HTMLElement[];
@@ -26,5 +26,13 @@ describe('Test API Home Page', () => {
     const card = (await screen.findAllByTestId(/card/i)) as HTMLElement[];
     await fireEvent.click(card[1]);
     expect(await screen.findByTestId(/popup/i)).toBeInTheDocument();
+  });
+  it('Check button search', async () => {
+    await setup();
+    const input = screen.getByPlaceholderText('search character ...') as HTMLInputElement;
+    const button = screen.getByTestId('button');
+    fireEvent.change(input, { target: { value: 'text' } });
+    await fireEvent.click(button);
+    expect(await screen.findByText(/Nothing found. Please try again./i)).toBeInTheDocument();
   });
 });
