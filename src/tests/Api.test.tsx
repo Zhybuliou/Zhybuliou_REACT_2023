@@ -1,12 +1,16 @@
 import { HashRouter } from 'react-router-dom';
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { Provider } from 'react-redux';
 import App from '../App';
+import store from '../store';
 
 const setup = () => {
   render(
     <HashRouter>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </HashRouter>
   );
 };

@@ -17,9 +17,6 @@ const formSlice = createSlice({
         check: action.payload.check,
       });
     },
-    // removeForm(state, action) {
-    //   console.log('delete', state);
-    // },
   },
 });
 
