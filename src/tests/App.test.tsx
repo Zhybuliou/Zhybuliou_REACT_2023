@@ -1,4 +1,4 @@
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { describe, test } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
@@ -7,14 +7,15 @@ import NotFoundPage from '../pages/NotFoundPage';
 import FormInput from '../components/FormInput';
 import FormCard from '../components/FormCard';
 import store from '../store';
+import NothingHere from '../components/NothingHere';
 
 const setup = () => {
   render(
-    <HashRouter>
+    <BrowserRouter>
       <Provider store={store}>
         <App />
       </Provider>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 const dataInput = {
@@ -45,6 +46,11 @@ describe('Components test', () => {
     const input = screen.getByPlaceholderText('search character ...') as HTMLInputElement;
     fireEvent.change(input, { target: { value: 'text' } });
     expect(input.value).toBe('text');
+  });
+
+  test('Check page NothingHere', async () => {
+    render(<NothingHere />);
+    expect(screen.getAllByText(/Nothing found. Please try again./i)).toBeDefined();
   });
 
   test('Check render About Page', () => {

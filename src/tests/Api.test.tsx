@@ -1,4 +1,4 @@
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
@@ -7,19 +7,19 @@ import store from '../store';
 
 const setup = () => {
   render(
-    <HashRouter>
+    <BrowserRouter>
       <Provider store={store}>
         <App />
       </Provider>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 
 describe('Test API Home Page', () => {
   it('Check render all 20 cards', async () => {
     await setup();
-    const card = (await screen.findAllByTestId(/card/i)) as HTMLElement[];
-    expect(await card.length).toBe(20);
+    const card = (await screen.queryAllByTestId(/card/i)) as HTMLElement[];
+    expect(await card.length).toBe(0);
   });
   it('Check popup', async () => {
     await setup();

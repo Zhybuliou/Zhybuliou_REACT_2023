@@ -15,7 +15,7 @@ export default function Home() {
   const [search, setSearch] = useState(searchValue || '');
   const [popupContent, setPopupContent] = useState<Character[]>([]);
   const [popupToggle, setPopupToggle] = useState(false);
-  const { data = [], isLoading, error } = useGetGoodsQuery({ name: searchValue });
+  const { data = [], isFetching, error } = useGetGoodsQuery({ name: searchValue });
   const dispatch = useDispatch();
 
   const handlerOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,11 +44,11 @@ export default function Home() {
         handleKeyDown={handleKeyDown}
         handlerOnClick={handlerOnClick}
       />
-      {isLoading && <Loading />}
+      {isFetching && <Loading />}
       {error !== undefined ? (
         <NothingHere />
       ) : (
-        <RenderApiCards char={data.results} changeContent={changeContent} />
+        !isFetching && <RenderApiCards char={data.results} changeContent={changeContent} />
       )}
 
       {popupToggle && <Popup popupContent={popupContent} changeContent={changeContent} />}

@@ -25,7 +25,12 @@ export default function SearchBar({
           onChange={handlerOnChange}
           onKeyUp={(e) => handleKeyDown(e)}
         />
-        <Button classButton="search-btn" text="search" onClick={handlerOnClick} />
+        <Button
+          classButton="search-btn"
+          text="search"
+          data-testid="button"
+          onClick={handlerOnClick}
+        />
       </div>
     </div>
   );

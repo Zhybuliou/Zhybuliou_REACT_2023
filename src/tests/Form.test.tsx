@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 import FormPage from '../pages/FormPage';
 import FormCard from '../components/FormCard';
-import App from '../App';
 import store from '../store';
 
 const setup = () => {
