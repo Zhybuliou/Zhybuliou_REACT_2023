@@ -1,11 +1,20 @@
 import { describe, test } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { HashRouter } from 'react-router-dom';
 import FormPage from '../pages/FormPage';
 import FormCard from '../components/FormCard';
+import store from '../store';
 
 const setup = () => {
   const fileImage = [new File(['(⌐□_□)'], 'chucknorris.png', { type: 'image/png' })];
-  const utils = render(<FormPage />);
+  const utils = render(
+    <HashRouter>
+      <Provider store={store}>
+        <FormPage />
+      </Provider>
+    </HashRouter>
+  );
   const input = utils.getByTestId(/name/i) as HTMLInputElement;
   const inputDate = utils.getByTestId(/data/i) as HTMLInputElement;
   const inputImage = utils.getByTestId(/image/i) as HTMLInputElement;
